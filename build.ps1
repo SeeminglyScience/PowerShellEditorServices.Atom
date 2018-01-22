@@ -7,7 +7,6 @@ end {
     $invokeBuildSplat = @{
         Task = 'PreRelease'
         File = "$PSScriptRoot/PowerShellEditorServices.Atom.build.ps1"
-        GenerateCodeCoverage = $true
         Force = $Force.IsPresent
         Configuration = 'Release'
     }
