@@ -1,0 +1,26 @@
+version: 0.1.0.{build}
+image: Visual Studio 2017
+environment:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+install:
+- ps: >-
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+    Install-Module Pester -RequiredVersion 4.1.1 -Scope CurrentUser -Force -SkipPublisherCheck
+
+    Install-Module InvokeBuild -RequiredVersion 5.0.0 -Scope CurrentUser -Force
+
+    Install-Module platyPS -RequiredVersion 0.9.0 -Scope CurrentUser -Force
+build_script:
+- ps: >-
+    . "$PWD\build.ps1" -Force
+on_finish:
+- ps: >-
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+    $zipPath = "$pwd\PowerShellEditorServices.Atom.zip"
+
+    [System.IO.Compression.ZipFile]::CreateFromDirectory("$pwd\Release", $zipPath)
+
+    Push-AppveyorArtifact $zipPath

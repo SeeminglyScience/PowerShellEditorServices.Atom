@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies" Version="1.1.0" />
+    <Reference Include="Microsoft.PowerShell.EditorServices">
+      <HintPath>..\..\lib\PowerShellEditorServices\bin\Desktop\Microsoft.PowerShell.EditorServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PowerShell.EditorServices.Protocol">
+      <HintPath>..\..\lib\PowerShellEditorServices\bin\Desktop\Microsoft.PowerShell.EditorServices.Protocol.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+    <PackageReference Include="Microsoft.PowerShell.SDK">
+      <Version>6.0.0-beta.5</Version>
+    </PackageReference>
+    <Reference Include="Microsoft.PowerShell.EditorServices">
+      <HintPath>..\..\lib\PowerShellEditorServices\bin\Core\Microsoft.PowerShell.EditorServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PowerShell.EditorServices.Protocol">
+      <HintPath>..\..\lib\PowerShellEditorServices\bin\Core\Microsoft.PowerShell.EditorServices.Protocol.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningsAsErrors>true</WarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+    <DefineConstants>CoreCLR</DefineConstants>
+  </PropertyGroup>
+</Project>
